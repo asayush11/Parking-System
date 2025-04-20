@@ -1,8 +1,8 @@
 package src;
 
 public abstract class Vehicle {
-    protected String licensePlate;
-    protected VehicleType type;
+    protected final String licensePlate;
+    protected final VehicleType type;
 
     public Vehicle(String licensePlate, VehicleType type) {
         this.licensePlate = licensePlate;
@@ -11,5 +11,9 @@ public abstract class Vehicle {
 
     public VehicleType getType() {
         return type;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
     }
 }

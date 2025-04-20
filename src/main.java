@@ -3,8 +3,8 @@ package src;
 public class main {
     public static void main(String[] args){
         Controller parkingLot = Controller.getInstance();
-        parkingLot.addLevel(new Level(1, 100));
-        parkingLot.addLevel(new Level(2, 80));
+        parkingLot.addLevel(new Level(1, 10));
+        parkingLot.addLevel(new Level(2, 8));
 
         Vehicle car = new Car("ABC123");
         Vehicle motorcycle = new Motorcycle("M1234");

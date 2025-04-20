@@ -36,7 +36,7 @@ public class Level {
 
     public synchronized boolean unparkVehicle(Vehicle vehicle) {
         for (Spot spot : parkingSpots) {
-            if (!spot.isAvailable() && spot.getParkedVehicle().equals(vehicle)) {
+            if (!spot.isAvailable() && spot.getParkedVehicle().getLicensePlate().equals(vehicle.getLicensePlate())) {
                 spot.unparkVehicle();
                 return true;
             }
@@ -46,8 +46,7 @@ public class Level {
 
     public void displayAvailability() {
         System.out.println("Level " + floor + " Availability:");
-        for (Spot spot : parkingSpots) {
-            System.out.println("Spot " + spot.getSpotNumber() + ": " + (spot.isAvailable() ? "Available For"  : "Occupied By ")+" "+spot.getVehicleType());
-        }
+        parkingSpots
+                .forEach(spot -> System.out.println("Spot " + spot.getSpotNumber() + ": " + (spot.isAvailable() ? "Available For"  : "Occupied By ")+" "+spot.getVehicleType()));
     }
 }

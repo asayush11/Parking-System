@@ -21,24 +21,22 @@ public class Controller {
         levels.add(level);
     }
 
-    public boolean parkVehicle(Vehicle vehicle) {
+    public void parkVehicle(Vehicle vehicle) {
         for (Level level : levels) {
             if (level.parkVehicle(vehicle)) {
                 System.out.println("Vehicle parked successfully.");
-                return true;
+                return;
             }
         }
         System.out.println("Could not park vehicle.");
-        return false;
     }
 
-    public boolean unparkVehicle(Vehicle vehicle) {
+    public void unparkVehicle(Vehicle vehicle) {
         for (Level level : levels) {
             if (level.unparkVehicle(vehicle)) {
-                return true;
+                return;
             }
         }
-        return false;
     }
 
     public void displayAvailability() {
