@@ -1,12 +1,13 @@
 package src;
 
-import java.sql.Timestamp;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Spot {
     private final int spotNumber;
     private final VehicleType vehicleType;
     private Vehicle parkedVehicle;
-    private Timestamp parkTime;
+    private LocalDateTime parkTime;
 
     public Spot(int spotNumber, VehicleType vehicleType) {
         this.spotNumber = spotNumber;
@@ -20,7 +21,8 @@ public class Spot {
     public synchronized void parkVehicle(Vehicle vehicle) {
         if (isAvailable() && vehicle.getType() == vehicleType) {
             parkedVehicle = vehicle;
-            parkTime = new Timestamp((System.currentTimeMillis()));
+            parkTime = LocalDateTime.now();
+            System.out.println("Vehicle parked at spot " + spotNumber + " at time: " + parkTime);
         } else {
             throw new IllegalArgumentException("Cannot Park.");
         }
@@ -28,7 +30,7 @@ public class Spot {
 
     public synchronized void unparkVehicle() {
         parkedVehicle = null;
-        long parkDuration = (new Timestamp((System.currentTimeMillis()))).getTime() - parkTime.getTime();
+        long parkDuration = ChronoUnit.MILLIS.between(parkTime, LocalDateTime.now());
         // it should be hours in real world
         double durationInMilliSeconds = parkDuration / 1000.0;
         double cost = (durationInMilliSeconds * 10.0);
